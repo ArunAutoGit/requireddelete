@@ -1,29 +1,40 @@
 name: Build and Push Frontend Docker Image
 
+# Trigger workflow on push to main branch
 on:
   push:
     branches: [ main ]
+
+# Grant permissions to allow pushing packages
+permissions:
+  contents: read      # for checking out code
+  packages: write     # needed to push Docker image to GHCR
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - uses: actions/checkout@v3
+      # 1. Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       # 2. Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      # 3. Log in to GitHub Container Registry (GHCR)
-      - uses: docker/login-action@v2
+      # 3. Log in to GitHub Container Registry
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: arunautogit   # lowercase
+          username: arunautogit       # lowercase
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # 4. Build Docker image
-      - run: docker build -t ghcr.io/arunautogit/requireddelete/frontend:latest .
+      - name: Build Docker image
+        run: docker build -t ghcr.io/arunautogit/requireddelete/frontend:latest .
 
       # 5. Push Docker image
-      - run: docker push ghcr.io/arunautogit/requireddelete/frontend:latest
+      - name: Push Docker image
+        run: docker push ghcr.io/arunautogit/requireddelete/frontend:latest
