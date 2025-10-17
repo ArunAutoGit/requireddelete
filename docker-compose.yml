@@ -3,32 +3,36 @@ version: '3.9'
 services:
   postgres:
     image: postgres:15
-    container_name: cta_postgres
-    restart: always
     environment:
+      POSTGRES_DB: tvs_cta
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: cta_db
+      POSTGRES_PASSWORD: yourpassword
     ports:
       - "5432:5432"
     volumes:
-      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   backend:
     build: ./backend
-    container_name: cta_backend
-    restart: always
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=tvs_cta
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
     depends_on:
-      - postgres
-    env_file:
-      - ./backend/.env
+      postgres:
+        condition: service_healthy
     ports:
-      - "9000:9000"
-    command: >
-      sh -c "alembic upgrade head &&
-             uvicorn main:app --host 0.0.0.0 --port 9000"
-    volumes:
-      - ./backend:/app
+      - "9000:8000"
+
+volumes:
+  pgdata:
 
   frontend:
     build: ./frontend
