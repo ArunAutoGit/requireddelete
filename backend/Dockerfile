@@ -1,20 +1,19 @@
-# Stage 1: Install dependencies
-FROM python:3.11-slim AS build
+# Stage 1: base
+FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy requirements
+# Copy dependency list
 COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend code
+# Copy source code
 COPY . .
 
-# Expose the port the backend runs on
+# Expose backend port
 EXPOSE 8000
 
-# Run the backend
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run backend (Uvicorn)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
