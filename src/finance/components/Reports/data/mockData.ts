@@ -1,0 +1,95 @@
+import { Transaction } from "../../../../admin/types/transaction";
+
+
+export const mockTransactions: Transaction[] = [
+  {
+    id: "TXN-2024-001247",
+    msrName: "Rajesh Kumar",
+    mechanicName: "Suresh Patel",
+    validCouponCount: 45,
+    totalCouponAmount: 22500,
+    approvalTimestamp: "2024-01-15 14:30:22",
+    paymentStatus: "Paid",
+    transactionNumber: "PAY-001247",
+    transactionDate: "2024-01-15",
+    paymentAmount: 22500,
+    payeeName: "Rajesh Kumar",
+    payeeBankAccount: "****8765",
+    remarks: "Regular monthly payout"
+  },
+  {
+    id: "TXN-2024-001248",
+    msrName: "Priya Sharma",
+    mechanicName: "Amit Singh",
+    validCouponCount: 32,
+    totalCouponAmount: 16000,
+    approvalTimestamp: "2024-01-15 15:45:10",
+    paymentStatus: "Pending",
+    transactionNumber: "PAY-001248",
+    transactionDate: "2024-01-15",
+    paymentAmount: 16000,
+    payeeName: "Priya Sharma",
+    payeeBankAccount: "****4321",
+    remarks: "Awaiting final verification"
+  },
+  {
+    id: "TXN-2024-001249",
+    msrName: "Mohammed Ali",
+    mechanicName: "Vikram Rao",
+    validCouponCount: 67,
+    totalCouponAmount: 33500,
+    approvalTimestamp: "2024-01-14 11:20:15",
+    paymentStatus: "Paid",
+    transactionNumber: "PAY-001249",
+    transactionDate: "2024-01-14",
+    paymentAmount: 33500,
+    payeeName: "Mohammed Ali",
+    payeeBankAccount: "****9876",
+    remarks: "High performance bonus included"
+  },
+  {
+    id: "TXN-2024-001250",
+    msrName: "Anita Verma",
+    mechanicName: "Ravi Kumar",
+    validCouponCount: 28,
+    totalCouponAmount: 14000,
+    approvalTimestamp: "2024-01-13 09:15:45",
+    paymentStatus: "Paid",
+    transactionNumber: "PAY-001250",
+    transactionDate: "2024-01-13",
+    paymentAmount: 14000,
+    payeeName: "Anita Verma",
+    payeeBankAccount: "****5432",
+    remarks: "Standard payment cycle"
+  },
+  {
+    id: "TXN-2024-001251",
+    msrName: "Deepak Singh",
+    mechanicName: "Manoj Gupta",
+    validCouponCount: 55,
+    totalCouponAmount: 27500,
+    approvalTimestamp: "2024-01-12 16:22:10",
+    paymentStatus: "Failed",
+    transactionNumber: "PAY-001251",
+    transactionDate: "2024-01-12",
+    paymentAmount: 27500,
+    payeeName: "Deepak Singh",
+    payeeBankAccount: "****7890",
+    remarks: "Payment failed due to invalid account details"
+  },
+  {
+    id: "TXN-2024-001252",
+    msrName: "Sunita Patel",
+    mechanicName: "Ramesh Yadav",
+    validCouponCount: 41,
+    totalCouponAmount: 20500,
+    approvalTimestamp: "2024-01-11 13:45:30",
+    paymentStatus: "Pending",
+    transactionNumber: "PAY-001252",
+    transactionDate: "2024-01-11",
+    paymentAmount: 20500,
+    payeeName: "Sunita Patel",
+    payeeBankAccount: "****2468",
+    remarks: "Under review for compliance check"
+  }
+];
